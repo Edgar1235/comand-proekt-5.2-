@@ -1,22 +1,24 @@
-# main.py (Версія Сторони А - на списках)
-contacts = []
+# Замість списку створюємо словник
+contacts = {}
 
 def add_contact():
-    name = input("Введіть ім'я: ")
+    name = input("Введіть ПІБ: ")
     phone = input("Введіть номер: ")
-    contacts.append(f"{name}: {phone}")
+    contacts[name] = phone  # Зберігаємо за ключем ПІБ
     print("Контакт додано!")
 
 def show_contacts():
-    print("\n--- Список контактів ---")
-    if not contacts:
-        print("Порожньо")
-    for c in contacts:
-        print(c)
+    print("\nСписок контактів:")
+    for name, phone in contacts.items():
+        print(f"{name}: {phone}")
 
-while True:
-    print("\n1. Додати | 2. Переглянути | 3. Вихід")
-    choice = input("> ")
-    if choice == "1": add_contact()
-    elif choice == "2": show_contacts()
-    elif choice == "3": break
+# Додаємо нову функцію видалення
+def delete_contact():
+    name = input("Введіть ПІБ для видалення: ")
+    if name in contacts:
+        del contacts[name]
+        print("Контакт видалено!")
+    else:
+        print("Такого контакту не існує.")
+
+# Тут має бути твій цикл while, який викликає ці функції
